@@ -12,10 +12,11 @@ const BET = 1;
 const STAKE = 100;
 //assigned variables
 let stake = 100;
-let noOfWins = 0;
-let noOfLost = 0;
 let noOfWInDays = 0;
 let noOfLostDays = 0;
+let count = 0;
+let winArr = [];
+let lossArr = [];
 let calculativeStakeLoss = stake * (50 / 100);
 let calculativeStakeWin = calculativeStakeLoss + STAKE;
 /*
@@ -24,6 +25,8 @@ let calculativeStakeWin = calculativeStakeLoss + STAKE;
  */
 function gambleChecker() {
   stake = 100;
+  let noOfWins = 0;
+  let noOfLost = 0;
   while (stake > calculativeStakeLoss && stake < calculativeStakeWin) {
     let result = Math.random();
     if (result > 0.5) {
@@ -36,8 +39,12 @@ function gambleChecker() {
   }
   if (noOfWins > noOfLost) {
     noOfWInDays += 1;
+    winArr[count++] = noOfWins;
+    lossArr[count++] = noOfLost;
   } else {
     noOfLostDays += 1;
+    winArr[count++] = noOfWins;
+    lossArr[count++] = noOfLost;
   }
   console.log("done for day " + noOfLostDays);
 }
@@ -58,7 +65,22 @@ function monthlyGambled() {
         }`
       );
 }
+/**
+ * @description: luckyDay() to find the lucky and unlucky doy of the months 
+ * @return :console log of lucky and unlucky day
+ */
+function luckyDay() {
+  let arr = winArr;
+  arr.sort((a, b) => b - a);
+  let daywin = winArr.indexOf(arr[0]);
+  console.log("the most luckiest day is" + daywin);
+  let brr = lossArr;
+  arr.sort((a, b) => b - a);
+  let dayloss = lossArr.indexOf(brr[0]);
+  console.log("the most unlucky day is" + dayloss);
+}
 for (let days = 0; days < 20; days++) {
   gambleChecker();
 }
 console.log(monthlyGambled());
+console.log(luckyDay());

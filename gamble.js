@@ -9,8 +9,11 @@
  */
 //assigned constant
 const BET = 1;
+const STAKE = 100;
 //assigned variables
-let stake = 100;
+let stake = STAKE;
+let calculativeStakeLoss = stake * (50 / 100);
+let calculativeStakeWin = calculativeStakeLoss + STAKE;
 /*
  *@description : To get the stake after the bet.
  *@return      : stake
@@ -19,4 +22,6 @@ function gambleChecker() {
   Math.random() > 0.5 ? (stake += 1) : (stake -= 1);
   return stake;
 }
-console.log(gambleChecker());
+while (stake > calculativeStakeLoss && stake < calculativeStakeWin) {
+  console.log(gambleChecker());
+}

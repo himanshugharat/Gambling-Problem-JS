@@ -8,5 +8,15 @@
  *@since   : 14-09-2020
  */
 //assigned constant
-const STAKE = 100;
 const BET = 1;
+//assigned variables
+let stake = 100;
+/*
+ *@description : To get the stake after the bet.
+ *@return      : stake
+ */
+function gambleChecker() {
+  Math.random() > 0.5 ? (stake += 1) : (stake -= 1);
+  return stake;
+}
+console.log(gambleChecker());

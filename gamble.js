@@ -11,7 +11,11 @@
 const BET = 1;
 const STAKE = 100;
 //assigned variables
-let stake = STAKE;
+let stake = 100;
+let noOfWins = 0;
+let noOfLost = 0;
+let noOfWInDays = 0;
+let noOfLostDays = 0;
 let calculativeStakeLoss = stake * (50 / 100);
 let calculativeStakeWin = calculativeStakeLoss + STAKE;
 /*
@@ -19,9 +23,38 @@ let calculativeStakeWin = calculativeStakeLoss + STAKE;
  *@return      : stake
  */
 function gambleChecker() {
-  Math.random() > 0.5 ? (stake += 1) : (stake -= 1);
-  return stake;
+  stake = 100;
+  while (stake > calculativeStakeLoss && stake < calculativeStakeWin) {
+    let result = Math.random();
+    if (result > 0.5) {
+      stake += 1;
+      noOfWins += 1;
+    } else {
+      stake -= 1;
+      noOfLost += 1;
+    }
+  }
+  if (noOfWins > noOfLost) {
+    noOfWInDays += 1;
+  } else {
+    noOfLostDays += 1;
+  }
+  console.log("done for day " + noOfLostDays);
 }
-while (stake > calculativeStakeLoss && stake < calculativeStakeWin) {
-  console.log(gambleChecker());
+function monthlyGambled() {
+  noOfWInDays > noOfLostDays
+    ? console.log(
+        `total money won ${noOfWInDays}days by${
+          calculativeStakeLoss * noOfWInDays
+        }`
+      )
+    : console.log(
+        `total money lost ${noOfLostDays} days by ${
+          calculativeStakeLoss * noOfLostDays
+        }`
+      );
 }
+for (let days = 0; days < 20; days++) {
+  gambleChecker();
+}
+console.log(monthlyGambled());

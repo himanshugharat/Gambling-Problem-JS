@@ -41,6 +41,10 @@ function gambleChecker() {
   }
   console.log("done for day " + noOfLostDays);
 }
+/**
+ * @description: monthlyGambled() to find the total months win or lost amount
+ * @return :console log of Amount
+ */
 function monthlyGambled() {
   noOfWInDays > noOfLostDays
     ? console.log(

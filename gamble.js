@@ -17,6 +17,7 @@ let noOfLostDays = 0;
 let count = 0;
 let winArr = [];
 let lossArr = [];
+let play = true;
 let calculativeStakeLoss = stake * (50 / 100);
 let calculativeStakeWin = calculativeStakeLoss + STAKE;
 /*
@@ -66,7 +67,7 @@ function monthlyGambled() {
       );
 }
 /**
- * @description: luckyDay() to find the lucky and unlucky doy of the months 
+ * @description: luckyDay() to find the lucky and unlucky doy of the months
  * @return :console log of lucky and unlucky day
  */
 function luckyDay() {
@@ -79,8 +80,30 @@ function luckyDay() {
   let dayloss = lossArr.indexOf(brr[0]);
   console.log("the most unlucky day is" + dayloss);
 }
+/**
+ * @description: CheckNextMonth() to find if the player want to play or not
+ * @return :the gambler for next month
+ */
+function checkNextMonth() {
+  var readline = require("readline").createInterface({
+    input: process.stdin,
+    output: process.stdout,
+  });
+  readline.question("do you want to continue if yes enter 1", (name) => {
+    if (name == 1) {
+      play = true;
+      for (let days = 0; days < 20; days++) {
+        play ? gambleChecker() : console.log("exit");
+      }
+      console.log(monthlyGambled());
+      console.log(luckyDay());
+      checkNextMonth();
+    }
+  });
+}
 for (let days = 0; days < 20; days++) {
-  gambleChecker();
+  play ? gambleChecker() : console.log("exit");
 }
 console.log(monthlyGambled());
 console.log(luckyDay());
+checkNextMonth();

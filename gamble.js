@@ -47,7 +47,7 @@ function gambleChecker() {
     winArr[count++] = noOfWins;
     lossArr[count++] = noOfLost;
   }
-  console.log("done for day " + noOfLostDays);
+  console.log("done for day ");
 }
 /**
  * @description: monthlyGambled() to find the total months win or lost amount
@@ -74,7 +74,7 @@ function luckyDay() {
   let arr = winArr;
   arr.sort((a, b) => b - a);
   let daywin = winArr.indexOf(arr[0]);
-  console.log("the most luckiest day is" + daywin);
+  console.log("the most luckiest day is" + daywin+1);
   let brr = lossArr;
   arr.sort((a, b) => b - a);
   let dayloss = lossArr.indexOf(brr[0]);
